@@ -11,7 +11,7 @@ import android.view.MenuItem;
  */
 public abstract class SecondaryWindowFragment extends Fragment {
 
-    private final String LOG_TAG = this.getClass().getName();
+    private final String LOG_TAG = this.getClass().getName() + MainActivity.GENERAL_LOG_TAG;
 
     private static MainActivity mMainActivity = null;
 
@@ -31,6 +31,7 @@ public abstract class SecondaryWindowFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(LOG_TAG, "onStart");
         NavigationView navigationView = (NavigationView) mMainActivity.findViewById(R.id.nav_view);
         MenuItem menuItem = (MenuItem) navigationView.getMenu().findItem(getNavigationDrawerMenuItemId());
         menuItem.setChecked(true);

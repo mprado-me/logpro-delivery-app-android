@@ -14,7 +14,7 @@ import java.util.HashSet;
  */
 public class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final String LOG_TAG = this.getClass().getName();
+    private final String LOG_TAG = this.getClass().getName() + MainActivity.GENERAL_LOG_TAG;
 
     private MainActivity mMainActivity;
     private HashSet<SecondaryWindowFragment> mFragments;
@@ -43,8 +43,10 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
                             mTempStackChange = false;
                             return;
                         }
-                        if (mMainActivity.getSupportFragmentManager().getBackStackEntryCount() == 0)
+                        if (mMainActivity.getSupportFragmentManager().getBackStackEntryCount() == 0){
                             mCurrentSelectedId = mMainActivity.getNavigationDrawerMenuItemId();
+                            mMainActivity.onSelected();
+                        }
                     }
                 });
     }
