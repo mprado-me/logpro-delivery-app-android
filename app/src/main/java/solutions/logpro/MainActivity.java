@@ -11,23 +11,52 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String LOG_TAG = this.getClass().getName();
+    private final String LOG_TAG = this.getClass().getName() + "_DEBUG";
 
     NavigationManager mNavigationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(LOG_TAG, "onCreate");
-        Log.d(LOG_TAG, "savedInstanceState: " + savedInstanceState);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d(LOG_TAG, "onCreate");
+        Log.d(LOG_TAG, "savedInstanceState: " + savedInstanceState);
+
         mNavigationManager = new NavigationManager(this);
-        if(savedInstanceState == null){
-            InitSecondaryWindowFragments();
-        }
+
+        InitSecondaryWindowFragments();
         InitNavigationDrawerMenu();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Log.d(LOG_TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.d(LOG_TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.d(LOG_TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        Log.d(LOG_TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d(LOG_TAG, "onDestroy");
     }
 
     private void InitNavigationDrawerMenu() {
