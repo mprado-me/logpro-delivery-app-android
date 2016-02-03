@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">LogPRO</string>
+
+    <string name="navigation_drawer_open">Abriu o menu de navegação</string>
+    <string name="navigation_drawer_close">Fechou o menu de navegação</string>
+
+    <string name="logpro_profile">Perfil LogPRO</string>
+    <string name="extract">Extrato</string>
+    <string name="report_problem">Reportar Problema</string>
+    <string name="status">Status</string>
+    <string name="status_on">ATIVO</string>
+    <string name="status_off">OCUPADO</string>
+    <string name="principal">Principal</string>
+</resources>
