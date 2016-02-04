@@ -1,7 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#238023">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    style="@style/SecondaryWindowTheme.ScrollView">
 
-</LinearLayout>
+    <LinearLayout
+        style="@style/SecondaryWindowTheme.RootLinearLayout"
+        android:theme="@style/SecondaryWindowTheme">
+
+        <ImageView style="@style/SecondaryWindowTheme.ProfilePicture" />
+
+        <TextView
+            style="@style/SecondaryWindowTheme.Text.Title"
+            android:text="Dados Pessoais:" />
+
+        <View style="@style/SecondaryWindowTheme.Line.UnderTitle" />
+
+        <LinearLayout style="@style/SecondaryWindowTheme.ProfileDataLine">
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text.FieldDescription"
+                android:text="Nome:" />
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text"
+                android:text="Jürgen Werner Heinz Geicke" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SecondaryWindowTheme.ProfileDataLine">
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text.FieldDescription"
+                android:text="Email:" />
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text"
+                android:text="geicke@ita.br" />
+        </LinearLayout>
+
+
+        <LinearLayout style="@style/SecondaryWindowTheme.ProfileDataLine">
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text.FieldDescription"
+                android:text="Telefone:" />
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text"
+                android:text="(12) 93141-5926" />
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text"
+                android:text="(TIM)" />
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/SecondaryWindowTheme.Text.Title"
+            android:text="Moto:" />
+
+        <View style="@style/SecondaryWindowTheme.Line.UnderTitle" />
+
+        <LinearLayout style="@style/SecondaryWindowTheme.ProfileDataLine">
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text.FieldDescription"
+                android:text="Placa:" />
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text"
+                android:text="ITA-2718" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SecondaryWindowTheme.ProfileDataLine">
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text.FieldDescription"
+                android:text="Modelo:" />
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text"
+                android:text="Yamaha Factor 125" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SecondaryWindowTheme.ProfileDataLine">
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text.FieldDescription"
+                android:text="Ano:" />
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text"
+                android:text="2015" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/SecondaryWindowTheme.Text.Title"
+            android:text="Avaliação Geral:" />
+
+        <View style="@style/SecondaryWindowTheme.Line.UnderTitle" />
+
+        <TextView
+            style="@style/SecondaryWindowTheme.Text.StarRateNumber"
+            android:text="4.5 / 5.0" />
+
+        <View style="@style/SecondaryWindowTheme.Line" />
+
+
+        <TextView
+            style="@style/SecondaryWindowTheme.Text.Small"
+            android:text="Mantenha seus dados sempre atualizados." />
+
+        <LinearLayout
+            style="@style/SecondaryWindowTheme.ProfileDataLine" >
+
+            <TextView
+                style="@style/SecondaryWindowTheme.Text.Small"
+                android:text="Em caso de alterações, ligue para " />
+
+            <TextView
+                android:id="@+id/change_profile_data_number"
+                style="@style/SecondaryWindowTheme.Text.Small.PhoneNumber.NotClicked"
+                android:text="(12) 1234-5678" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

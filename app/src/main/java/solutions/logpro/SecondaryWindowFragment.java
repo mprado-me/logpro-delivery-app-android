@@ -62,4 +62,8 @@ public abstract class SecondaryWindowFragment extends Fragment {
         super.onDestroy();
         Log.d(LOG_TAG, "onDestroy");
     }
+
+    public static void destroyMainActivityReference() {
+        mMainActivity = null;
+    }
 }

@@ -17,4 +17,92 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="SecondaryWindowTheme" parent="AppTheme">
+        <item name="android:background">#EEEEEE</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text" parent="AppTheme">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Line.UnderTitle">
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text.StarRateNumber">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text.Small">
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text.Small.PhoneNumber">
+        <item name="android:layout_marginLeft">0dp</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text.Small.PhoneNumber.NotClicked">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text.Small.PhoneNumber.Clicked">
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+
+    <style name="SecondaryWindowTheme.ScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.RootLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">6dp</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.ProfilePicture">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:minHeight">100dp</item>
+        <item name="android:minWidth">100dp</item>
+        <item name="android:src">@mipmap/motoboy_picture</item>
+        <item name="android:contentDescription">@string/user_profile_picture_description</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.ProfileDataLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SecondaryWindowTheme.Text.FieldDescription">
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+
 </resources>

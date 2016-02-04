@@ -11,4 +11,5 @@
     <string name="status_on">ATIVO</string>
     <string name="status_off">OCUPADO</string>
     <string name="principal">Principal</string>
+    <string name="user_profile_picture_description">Sua foto</string>
 </resources>

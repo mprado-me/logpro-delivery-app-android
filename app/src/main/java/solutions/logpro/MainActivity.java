@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String GENERAL_LOG_TAG = "MPDEBUG";
@@ -25,19 +27,23 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "onCreate");
         Log.d(LOG_TAG, "savedInstanceState: " + savedInstanceState);
 
-        mNavigationManager = new NavigationManager(this);
-
-        InitSecondaryWindowFragments();
+        // Explicação da linha: SecondaryWindowFragment.setMainActivity(this);
+        // Qualquer SecondaryWindowFragment precisa de uma referencia para a MainActivity, pois
+        // ao ser exibido, onStart(), precisa mudar o título na barra superior e o item selecionao
+        // no NavigationDrawer
+        SecondaryWindowFragment.setMainActivity(this);
+        mNavigationManager = new NavigationManager(this, getSecondaryWindowFragmentsById(), savedInstanceState);
         InitNavigationDrawerMenu();
     }
 
-    // Não mudar a ordem de chamada de onSelected() e super.onStart(). onSelected() DEVE vir primeiro
+
     @Override
     protected void onStart() {
         Log.d(LOG_TAG, "onStart");
-        // Como super.onStart chama o onStart dos SecondaryWindowFragments ativos, para que a seleção no
+        // Não mudar a ordem de chamada de onSelected() e super.onStart(). onSelected() DEVE ser chamado primeiro
+        // Como super.onStart() chama o onStart() dos SecondaryWindowFragments ativos, para que a seleção no
         // menu de navegação e o preenchimento do título na barra superior sejam preenchidos corretamente
-        // quando um SecondaryWindowFragment estiver ativos, é necessário primeiro chamar o onStart()
+        // quando um SecondaryWindowFragment estiver ativo, é necessário primeiro chamar o onStart()
         // da MainActivity e depois o onStart() do SecondaryWindowFragment ativo.
         onSelected();
         super.onStart();
@@ -62,9 +68,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        mNavigationManager.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.d(LOG_TAG, "onDestroy");
+
+        mNavigationManager = null;
+        SecondaryWindowFragment.destroyMainActivityReference();
     }
 
     private void InitNavigationDrawerMenu() {
@@ -85,11 +99,16 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(mNavigationManager);
     }
 
-    private void InitSecondaryWindowFragments() {
-        SecondaryWindowFragment.setMainActivity(this);
-        mNavigationManager.addSecondaryWindowFragment(new ProfileFragment());
-        mNavigationManager.addSecondaryWindowFragment(new ExtractFragment());
-        mNavigationManager.addSecondaryWindowFragment(new ReportProblemFragment());
+    private HashMap<Integer, SecondaryWindowFragment> getSecondaryWindowFragmentsById() {
+        HashMap<Integer, SecondaryWindowFragment> map = new HashMap<Integer, SecondaryWindowFragment>();
+        putSecondaryWindowFragmentInMap(map, new ProfileFragment());
+        putSecondaryWindowFragmentInMap(map, new ExtractFragment());
+        putSecondaryWindowFragmentInMap(map, new ReportProblemFragment());
+        return map;
+    }
+
+    private void putSecondaryWindowFragmentInMap(HashMap<Integer, SecondaryWindowFragment> map, SecondaryWindowFragment frag){
+        map.put(frag.getNavigationDrawerMenuItemId(), frag);
     }
 
     public int getNavigationDrawerMenuItemId() {
@@ -105,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Log.d(LOG_TAG, "onBackPressed");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
