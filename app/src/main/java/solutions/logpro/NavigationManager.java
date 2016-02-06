@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import solutions.logpro.reportproblem.ReportProblemFragment;
 import solutions.logpro.utils.Utils;
 
 /**
@@ -19,10 +20,8 @@ import solutions.logpro.utils.Utils;
 public class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;
-    private final String CURRENT_SELECTED_ID_KEY = "CURRENT_SELECTED_ID_KEY";
 
     private MainActivity mMainActivity;
-    private HashMap<Integer, SecondaryWindowFragment> mFragmentsById;
     private int mCurrentSelectedId;
     // Na função onNotPrincipalItemSelected, quando é um janela secundária que está ativa, ao
     // retirarmos o fragmento atual, mMainActivity.getSupportFragmentManager().popBackStack(), a
@@ -33,24 +32,10 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     // TODO: Encontrar um forma de não precisar mais usar esta variável
     private boolean mTempStackChange = false;
 
-    public NavigationManager(MainActivity mainActivity,
-                             HashMap<Integer, SecondaryWindowFragment> fragmentsById,
-                             Bundle savedInstanceState) {
+    public NavigationManager(MainActivity mainActivity) {
         Log.d(LOG_TAG, "NavigationManager constructor called");
-        mFragmentsById = fragmentsById;
         mMainActivity = mainActivity;
         initOnFragmentManagerBackStackChangedListenner();
-        if (savedInstanceState == null) {
-            Log.d(LOG_TAG, "savedInstanceState == null");
-            mCurrentSelectedId = mMainActivity.getNavigationDrawerMenuItemId();
-        } else {
-            Log.d(LOG_TAG, "savedInstanceState != null");
-            mCurrentSelectedId = savedInstanceState.getInt(this.getClass().getName() + CURRENT_SELECTED_ID_KEY);
-            Log.d(LOG_TAG, "mCurrentSelectedId: " + mMainActivity.getResources().getResourceName(mCurrentSelectedId));
-            if (mCurrentSelectedId != mMainActivity.getNavigationDrawerMenuItemId()) {
-                onNotPrincipalItemSelected(mFragmentsById.get(mCurrentSelectedId));
-            }
-        }
     }
 
     private void initOnFragmentManagerBackStackChangedListenner() {
@@ -83,10 +68,24 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
         if (id == mMainActivity.getNavigationDrawerMenuItemId()) {
             mMainActivity.getSupportFragmentManager().popBackStack();
         } else {
-            onNotPrincipalItemSelected(mFragmentsById.get(id));
+            onNotPrincipalItemSelected(getFragmentById(id));
         }
 
         return closeDrawer();
+    }
+
+    // TODO: Encontrar uma forma mais elegente de implementar esse método
+    private SecondaryWindowFragment getFragmentById(int id) {
+        switch (id){
+            case R.id.nav_profile:
+                return new ProfileFragment();
+            case R.id.nav_extract:
+                return new ExtractFragment();
+            case R.id.nav_problem:
+                return new ReportProblemFragment();
+            default:
+                return null;
+        }
     }
 
     private boolean closeDrawer() {
@@ -108,10 +107,5 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
                 .commit();
 
         mCurrentSelectedId = notPrincipalSelectedFragment.getNavigationDrawerMenuItemId();
-    }
-
-    public void onSaveInstanceState(Bundle outState) {
-        Log.d(LOG_TAG, "onSaveInstanceState");
-        outState.putInt(this.getClass().getName() + CURRENT_SELECTED_ID_KEY, mCurrentSelectedId);
     }
 }

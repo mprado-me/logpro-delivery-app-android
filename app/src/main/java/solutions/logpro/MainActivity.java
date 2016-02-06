@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
         // ao ser exibido, onStart(), precisa mudar o título na barra superior e o item selecionao
         // no NavigationDrawer
         SecondaryWindowFragment.setMainActivity(this);
-        mNavigationManager = new NavigationManager(this, getSecondaryWindowFragmentsById(), savedInstanceState);
+        mNavigationManager = new NavigationManager(this);
         InitNavigationDrawerMenu();
-    }
+}
 
 
     @Override
@@ -76,12 +76,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mNavigationManager.onSaveInstanceState(outState);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.d(LOG_TAG, "onDestroy");
@@ -106,18 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(mNavigationManager);
-    }
-
-    private HashMap<Integer, SecondaryWindowFragment> getSecondaryWindowFragmentsById() {
-        HashMap<Integer, SecondaryWindowFragment> map = new HashMap<Integer, SecondaryWindowFragment>();
-        putSecondaryWindowFragmentInMap(map, new ProfileFragment());
-        putSecondaryWindowFragmentInMap(map, new ExtractFragment());
-        putSecondaryWindowFragmentInMap(map, new ReportProblemFragment());
-        return map;
-    }
-
-    private void putSecondaryWindowFragmentInMap(HashMap<Integer, SecondaryWindowFragment> map, SecondaryWindowFragment frag){
-        map.put(frag.getNavigationDrawerMenuItemId(), frag);
     }
 
     public int getNavigationDrawerMenuItemId() {

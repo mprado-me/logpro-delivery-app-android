@@ -15,6 +15,7 @@ import solutions.logpro.MainActivity;
 // TODO: No MyEditText, não mostrar o cursor ao scollar
 // TODO: Na posição horizontal, apagar o cursor ao clicar em concluir a inserção do texto
 // TODO: Encontrar uma forma de o menu de seleção de texto não bugar com os outros menus
+// TODO: Indicar para o usuario quando esta focado e quando esta desfocado mudando o background
 public class MyEditText extends EditText {
 
     private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;

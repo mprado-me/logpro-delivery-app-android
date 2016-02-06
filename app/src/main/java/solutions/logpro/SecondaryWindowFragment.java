@@ -35,11 +35,10 @@ public abstract class SecondaryWindowFragment extends Fragment {
         super.onStart();
         Log.d(LOG_TAG, "onStart");
         NavigationView navigationView = (NavigationView) mMainActivity.findViewById(R.id.nav_view);
-        MenuItem menuItem = (MenuItem) navigationView.getMenu().findItem(getNavigationDrawerMenuItemId());
+        MenuItem menuItem = navigationView.getMenu().findItem(getNavigationDrawerMenuItemId());
         menuItem.setChecked(true);
         mMainActivity.setTitle(menuItem.getTitle());
     }
-
 
     @Override
     public void onResume(){

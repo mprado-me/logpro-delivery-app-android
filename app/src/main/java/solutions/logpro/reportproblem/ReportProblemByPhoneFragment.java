@@ -14,6 +14,7 @@ import solutions.logpro.utils.Utils;
 /**
  * Created by MarcoAurelio on 04/02/2016.
  */
+// TODO: Encontrar uma forma de lançar a intent da ligação apenas quando eu clico na aba telefone e não sempre que esse fragment se torna vísivel (onStart())
 public class ReportProblemByPhoneFragment extends ReportProblemTabContentFragment {
 
     private String mIntentPhoneNumber;
