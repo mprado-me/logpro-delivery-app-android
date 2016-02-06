@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:theme="@style/SecondaryWindowTheme"
+    android:weightSum="1"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        style="@style/SecondaryWindowTheme.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descreva o problema:"
+        android:textSize="15sp"
+        android:layout_marginTop="12dp"
+        />
+
+    <solutions.logpro.utils.MyEditText
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/message_edit_text"
+        android:gravity="top|left"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:background="@drawable/report_problem_message_edit_text_border"
+        android:scrollbarAlwaysDrawVerticalTrack="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:id="@+id/button"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"/>
+</LinearLayout>

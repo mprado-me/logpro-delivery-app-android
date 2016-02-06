@@ -11,12 +11,14 @@ import android.view.MenuItem;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import solutions.logpro.utils.Utils;
+
 /**
  * Created by MarcoAurelio on 31/01/2016.
  */
 public class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final String LOG_TAG = this.getClass().getName() + MainActivity.GENERAL_LOG_TAG;
+    private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;
     private final String CURRENT_SELECTED_ID_KEY = "CURRENT_SELECTED_ID_KEY";
 
     private MainActivity mMainActivity;
@@ -109,6 +111,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     }
 
     public void onSaveInstanceState(Bundle outState) {
+        Log.d(LOG_TAG, "onSaveInstanceState");
         outState.putInt(this.getClass().getName() + CURRENT_SELECTED_ID_KEY, mCurrentSelectedId);
     }
 }

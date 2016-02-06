@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import solutions.logpro.utils.Utils;
+
 public class ProfileFragment extends SecondaryWindowFragment {
 
     public ProfileFragment() {
@@ -22,14 +24,14 @@ public class ProfileFragment extends SecondaryWindowFragment {
     }
 
     @Override
-    public void onStart(){
+    public void onResume(){
         super.onStart();
         setIntentOnClickChangeProfileDataTelNumber();
     }
 
     private void setIntentOnClickChangeProfileDataTelNumber() {
         final TextView changeProfileDataTelNumber = (TextView) getView().findViewById(R.id.change_profile_data_number);
-        final String telNumber = formatTelNumber(changeProfileDataTelNumber.getText());
+        final String telNumber = Utils.formatTelNumber(changeProfileDataTelNumber.getText());
         changeProfileDataTelNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,16 +41,6 @@ public class ProfileFragment extends SecondaryWindowFragment {
                 changeProfileDataTelNumber.setTextColor(getResources().getColor(R.color.purple));
             }
         });
-    }
-
-    private String formatTelNumber(CharSequence text) {
-        String tel = "";
-        for (int i = 0; i < text.length(); i++){
-            Character c = text.charAt(i);
-            if( Character.isDigit(c) )
-                tel += c;
-        }
-        return tel;
     }
 
     @Override

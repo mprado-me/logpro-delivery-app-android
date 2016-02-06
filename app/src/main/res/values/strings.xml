@@ -12,4 +12,6 @@
     <string name="status_off">OCUPADO</string>
     <string name="principal">Principal</string>
     <string name="user_profile_picture_description">Sua foto</string>
+    <string name="report_problem_message_tab_title">Mensagem</string>
+    <string name="report_problem_phone_tab_title">Telefone</string>
 </resources>

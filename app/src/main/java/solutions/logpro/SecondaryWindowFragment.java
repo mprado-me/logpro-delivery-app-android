@@ -6,12 +6,14 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.MenuItem;
 
+import solutions.logpro.utils.Utils;
+
 /**
  * Created by MarcoAurelio on 02/02/2016.
  */
 public abstract class SecondaryWindowFragment extends Fragment {
 
-    private final String LOG_TAG = this.getClass().getName() + MainActivity.GENERAL_LOG_TAG;
+    private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;
 
     private static MainActivity mMainActivity = null;
 
