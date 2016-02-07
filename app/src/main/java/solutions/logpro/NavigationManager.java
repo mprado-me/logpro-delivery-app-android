@@ -1,6 +1,5 @@
 package solutions.logpro;
 
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -8,9 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
+import solutions.logpro.extract.ExtractFragment;
 import solutions.logpro.reportproblem.ReportProblemFragment;
 import solutions.logpro.utils.Utils;
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--TODO: Fazer month_extract_total não clicável-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/month_extract_total_root_id"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false">
+
+    <TextView
+        android:id="@+id/total_money_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RS 1780,30"
+        android:textSize="40sp"
+        android:textColor="@color/blue"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/total_mileage_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RS 1780,30"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/total_hours_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RS 1780,30"
+            android:textSize="15sp"
+            android:textColor="@color/blue"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
