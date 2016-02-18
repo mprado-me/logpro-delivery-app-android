@@ -1,12 +1,14 @@
 package solutions.logpro;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -128,10 +130,28 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         Log.d(LOG_TAG, "onBackPressed");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final MainActivity mainActivity = this;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(mNavigationManager.getCurrentSelectedId() == getNavigationDrawerMenuItemId()){
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Fechando o aplicativo")
+                        .setMessage("Caso esteja numa corrida, ela será cancelada. Você tem certeza que deseja sair?")
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+
+                        })
+                        .setNegativeButton("Não", null)
+                        .show();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 

@@ -32,6 +32,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     public NavigationManager(MainActivity mainActivity) {
         Log.d(LOG_TAG, "NavigationManager constructor called");
         mMainActivity = mainActivity;
+        mCurrentSelectedId = mainActivity.getNavigationDrawerMenuItemId();
         initOnFragmentManagerBackStackChangedListenner();
     }
 
@@ -104,5 +105,9 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
                 .commit();
 
         mCurrentSelectedId = notPrincipalSelectedFragment.getNavigationDrawerMenuItemId();
+    }
+
+    public int getCurrentSelectedId(){
+        return mCurrentSelectedId;
     }
 }
