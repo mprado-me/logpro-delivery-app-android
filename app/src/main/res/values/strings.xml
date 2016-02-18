@@ -14,4 +14,8 @@
     <string name="user_profile_picture_description">Sua foto</string>
     <string name="report_problem_message_tab_title">Mensagem</string>
     <string name="report_problem_phone_tab_title">Telefone</string>
+    <string name="email_not_registered">Email não cadastrado, tente novamente</string>
+    <string name="incorrect_password">Senha incorreta, tente novamente</string>
+    <string name="no_connection">Sem conexão com a internet, tente novamente</string>
+    <string name="login_welcome_message">Seja bem vindo! Entre com seus dados</string>
 </resources>

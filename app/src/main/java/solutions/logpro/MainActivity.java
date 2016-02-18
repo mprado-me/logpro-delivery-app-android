@@ -76,6 +76,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        Log.d(LOG_TAG, "onSaveInstanceState");
+
+        // Save the user's current game state
+        savedInstanceState.putBoolean("oisdaceddao MainActivity", false);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.d(LOG_TAG, "onDestroy");
