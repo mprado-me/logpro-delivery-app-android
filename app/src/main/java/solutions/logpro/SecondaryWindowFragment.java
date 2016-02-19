@@ -13,7 +13,7 @@ import solutions.logpro.utils.Utils;
  */
 public abstract class SecondaryWindowFragment extends Fragment {
 
-    private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;
+    private final String LOG_TAG = this.getClass().getName() + Consts.GENERAL_LOG_TAG;
 
     private static MainActivity mMainActivity = null;
 

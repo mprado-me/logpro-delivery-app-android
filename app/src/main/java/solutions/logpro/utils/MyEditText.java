@@ -18,7 +18,7 @@ import solutions.logpro.MainActivity;
 // TODO: Indicar para o usuario quando esta focado e quando esta desfocado mudando o background
 public class MyEditText extends EditText {
 
-    private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;
+    private final String LOG_TAG = this.getClass().getName() + Consts.GENERAL_LOG_TAG;
     private OnBackPressedListener mOnBackPressedListener;
 
     public MyEditText(Context context) {

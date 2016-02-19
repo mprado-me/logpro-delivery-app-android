@@ -18,7 +18,7 @@ public class MonthExtractArrayAdapter extends ArrayAdapter<String> {
 
     private String mTotal;
 
-    private final static String LOG_TAG = MonthExtractArrayAdapter.class.getName() + Utils.GENERAL_LOG_TAG;
+    private final static String LOG_TAG = MonthExtractArrayAdapter.class.getName() + Consts.GENERAL_LOG_TAG;
 
     public MonthExtractArrayAdapter(Context context, String[] objects, String total) {
         super(context, 0, objects);

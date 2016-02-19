@@ -16,7 +16,7 @@ import solutions.logpro.utils.Utils;
  */
 public class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;
+    private final String LOG_TAG = this.getClass().getName() + Consts.GENERAL_LOG_TAG;
 
     private MainActivity mMainActivity;
     private int mCurrentSelectedId;

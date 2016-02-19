@@ -17,7 +17,7 @@ public class ReportProblemFragment extends SecondaryWindowFragment {
 
     private final String MESSAGE_SPEC = "MESSAGE_SPEC";
     private final String PHONE_SPEC = "PHONE_SPEC";
-    private final String LOG_TAG = this.getClass().getName()+ Utils.GENERAL_LOG_TAG;
+    private final String LOG_TAG = this.getClass().getName()+ Consts.GENERAL_LOG_TAG;
 
     public ReportProblemFragment() {
     }

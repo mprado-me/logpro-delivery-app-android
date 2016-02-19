@@ -20,7 +20,7 @@ import solutions.logpro.utils.Utils;
  */
 public class LoginActivity extends Activity implements OnAuthenticationFinishListener {
 
-    private static String LOG_TAG = LoginActivity.class.getName() + Utils.GENERAL_LOG_TAG;
+    private static String LOG_TAG = LoginActivity.class.getName() + Consts.GENERAL_LOG_TAG;
 
     private EditText mEmail;
     private EditText mPassword;
@@ -75,20 +75,20 @@ public class LoginActivity extends Activity implements OnAuthenticationFinishLis
     }
 
     @Override
-    public void onAuthenticationFinish(int result) {
+    public void onAuthenticationFinish(AuthStatus result) {
         switch(result){
-            case Consts.Login.NO_CONNECTION:
+            case NO_CONNECTION:
                 hideProgressAndShowLoginButton();
                 setLoginInfoText(R.string.no_connection);
                 break;
-            case Consts.Login.SUCCESS:
+            case SUCCESS:
                 launchMainActivity();
                 break;
-            case Consts.Login.EMAIL_NOT_REGISTERED:
+            case EMAIL_NOT_REGISTERED:
                 hideProgressAndShowLoginButton();
                 setLoginInfoText(R.string.email_not_registered);
                 break;
-            case Consts.Login.INCORRECT_PASSWORD:
+            case INCORRECT_PASSWORD:
                 hideProgressAndShowLoginButton();
                 setLoginInfoText(R.string.incorrect_password);
                 break;

@@ -25,7 +25,7 @@ import solutions.logpro.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String LOG_TAG = this.getClass().getName() + Utils.GENERAL_LOG_TAG;
+    private final String LOG_TAG = this.getClass().getName() + Consts.GENERAL_LOG_TAG;
 
     NavigationManager mNavigationManager;
 

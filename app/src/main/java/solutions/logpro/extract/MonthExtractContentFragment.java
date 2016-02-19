@@ -20,7 +20,7 @@ public class MonthExtractContentFragment extends Fragment {
     private int mMonth;
     private int mYear;
 
-    private static final String LOG_TAG = MonthExtractContentFragment.class.getName() + Utils.GENERAL_LOG_TAG;
+    private static final String LOG_TAG = MonthExtractContentFragment.class.getName() + Consts.GENERAL_LOG_TAG;
     private static final String MONTH_KEY = MonthExtractContentFragment.class.getName() + "MONTH_KEY";
     private static final String YEAR_KEY = MonthExtractContentFragment.class.getName() + "YEAR_KEY";
 

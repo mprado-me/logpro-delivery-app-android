@@ -14,7 +14,7 @@ import solutions.logpro.utils.Utils;
  */
 public class ReportProblemTabContentFragment extends Fragment {
 
-    protected final String LOG_TAG = this.getClass().getName()+ Utils.GENERAL_LOG_TAG;
+    protected final String LOG_TAG = this.getClass().getName()+ Consts.GENERAL_LOG_TAG;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

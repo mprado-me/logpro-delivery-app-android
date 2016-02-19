@@ -21,7 +21,7 @@ import solutions.logpro.utils.Utils;
 
 public class ExtractFragment extends SecondaryWindowFragment {
 
-    private final static String LOG_TAG = ExtractFragment.class.getName()+ Utils.GENERAL_LOG_TAG;
+    private final static String LOG_TAG = ExtractFragment.class.getName()+ Consts.GENERAL_LOG_TAG;
 
     private FragmentStatePagerAdapter mAdapterViewPage;
 
