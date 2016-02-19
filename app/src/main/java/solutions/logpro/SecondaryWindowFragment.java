@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.MenuItem;
 
-import solutions.logpro.utils.Utils;
+import solutions.logpro.utils.Consts;
 
 /**
  * Created by MarcoAurelio on 02/02/2016.

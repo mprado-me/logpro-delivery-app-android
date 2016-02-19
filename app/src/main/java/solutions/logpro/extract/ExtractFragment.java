@@ -17,7 +17,7 @@ import java.util.Date;
 
 import solutions.logpro.R;
 import solutions.logpro.SecondaryWindowFragment;
-import solutions.logpro.utils.Utils;
+import solutions.logpro.utils.Consts;
 
 public class ExtractFragment extends SecondaryWindowFragment {
 

@@ -2,14 +2,13 @@ package solutions.logpro.reportproblem;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import solutions.logpro.R;
 import solutions.logpro.SecondaryWindowFragment;
-import solutions.logpro.utils.Utils;
+import solutions.logpro.utils.Consts;
 
 public class ReportProblemFragment extends SecondaryWindowFragment {
 

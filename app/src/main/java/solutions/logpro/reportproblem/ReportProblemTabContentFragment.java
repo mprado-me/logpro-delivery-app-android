@@ -1,13 +1,10 @@
 package solutions.logpro.reportproblem;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.MenuItem;
 
-import solutions.logpro.MainActivity;
-import solutions.logpro.utils.Utils;
+import solutions.logpro.utils.Consts;
 
 /**
  * Created by MarcoAurelio on 04/02/2016.

@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import solutions.logpro.extract.ExtractFragment;
 import solutions.logpro.reportproblem.ReportProblemFragment;
-import solutions.logpro.utils.Utils;
+import solutions.logpro.utils.Consts;
 
 /**
  * Created by MarcoAurelio on 31/01/2016.

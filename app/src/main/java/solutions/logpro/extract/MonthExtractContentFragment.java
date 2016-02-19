@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import solutions.logpro.R;
-import solutions.logpro.utils.Utils;
+import solutions.logpro.utils.Consts;
 
 /**
  * Created by MarcoAurelio on 06/02/2016.

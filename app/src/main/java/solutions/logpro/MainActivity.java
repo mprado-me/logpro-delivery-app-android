@@ -21,6 +21,7 @@ import android.widget.EditText;
 import java.util.HashMap;
 
 import solutions.logpro.reportproblem.ReportProblemFragment;
+import solutions.logpro.utils.Consts;
 import solutions.logpro.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,17 +76,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.d(LOG_TAG, "onStop");
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState){
-        Log.d(LOG_TAG, "onSaveInstanceState");
-
-        // Save the user's current game state
-        savedInstanceState.putBoolean("oisdaceddao MainActivity", false);
-
-        // Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override

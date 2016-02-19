@@ -70,8 +70,9 @@ public class LoginActivity extends Activity implements OnAuthenticationFinishLis
     private void initAuthentication() {
         mLoginButton.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
+        UserInfo userInfo = new UserInfo(mEmail.getText().toString(), mPassword.getText().toString());
         AuthenticationTask authenticationTask = new AuthenticationTask(this);
-        authenticationTask.execute();
+        authenticationTask.execute(userInfo);
     }
 
     @Override
@@ -95,7 +96,6 @@ public class LoginActivity extends Activity implements OnAuthenticationFinishLis
             default:
                 break;
         }
-
     }
 
     private void hideProgressAndShowLoginButton() {
@@ -110,16 +110,6 @@ public class LoginActivity extends Activity implements OnAuthenticationFinishLis
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
         startActivity(intent);
         this.finish();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState){
-        Log.d(LOG_TAG, "onSaveInstanceState");
-        // Save the user's current game state
-        savedInstanceState.putBoolean("oio LoginActivity", false);
-
-        // Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState);
     }
 
     public void setLoginInfoText(int stringId) {

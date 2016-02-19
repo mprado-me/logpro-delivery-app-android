@@ -1,6 +1,8 @@
 package solutions.logpro.login;
 
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Parcel;
 import android.util.Log;
 import android.view.View;
 
@@ -15,6 +17,7 @@ import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 
 import solutions.logpro.utils.Consts;
 import solutions.logpro.utils.Utils;
@@ -22,7 +25,7 @@ import solutions.logpro.utils.Utils;
 /**
  * Created by MarcoAurelio on 17/02/2016.
  */
-public class AuthenticationTask extends AsyncTask<Void, Void, AuthStatus> {
+public class AuthenticationTask extends AsyncTask<UserInfo, Void, AuthStatus> {
 
     private static final String LOG_TAG = AuthenticationTask.class.getName()+ Consts.GENERAL_LOG_TAG;
 
@@ -34,12 +37,21 @@ public class AuthenticationTask extends AsyncTask<Void, Void, AuthStatus> {
     }
 
     @Override
-    protected AuthStatus doInBackground(Void... params) {
+    protected AuthStatus doInBackground(UserInfo... userInfo) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(Consts.Login.DOMAIN_URL+Consts.Login.AUTH_USER_PATH);
+            Uri uri = new Uri.Builder()
+                    .scheme("https")
+                    .authority(Consts.AUTHORITY)
+                    .path(Consts.Login.AUTH_USER_PATH)
+                    .appendQueryParameter("email", userInfo[0].email)
+                    .appendQueryParameter("password", userInfo[0].password)
+                    .build();
+
+            URL url = new URL(uri.toString());
+            Log.d(LOG_TAG, "url = " + url.toString());
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
