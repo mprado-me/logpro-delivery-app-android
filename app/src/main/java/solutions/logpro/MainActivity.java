@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "onPause");
     }
 
-    @Override
+    @    Override
     protected void onStop() {
         super.onStop();
         Log.d(LOG_TAG, "onStop");

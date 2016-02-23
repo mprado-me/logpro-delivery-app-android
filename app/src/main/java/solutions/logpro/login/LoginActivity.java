@@ -3,6 +3,7 @@ package solutions.logpro.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +13,19 @@ import android.widget.TextView;
 
 import solutions.logpro.MainActivity;
 import solutions.logpro.R;
+import solutions.logpro.msg.InMsg;
+import solutions.logpro.msg.auth.InAuthMsg;
+import solutions.logpro.msg.auth.OutAuthMsg;
+import solutions.logpro.msgexchange.HttpsReqsManager;
+import solutions.logpro.msgexchange.OnFinishHttpGetReqListener;
 import solutions.logpro.utils.Consts;
-import solutions.logpro.utils.Utils;
 
 /**
  * Created by MarcoAurelio on 17/02/2016.
  */
-public class LoginActivity extends Activity implements OnAuthenticationFinishListener {
+// TODO: Criar a classe ReqActivity que já possui um HttpsReqsManager, fazer com que herde LoginActivity de ReqActivity
+// TODO: Criar a classe ReqFragment que possui o mesmo objetivo da classe ReqActivity
+public class LoginActivity extends Activity implements OnFinishHttpGetReqListener<InAuthMsg> {
 
     private static String LOG_TAG = LoginActivity.class.getName() + Consts.GENERAL_LOG_TAG;
 
@@ -28,6 +35,7 @@ public class LoginActivity extends Activity implements OnAuthenticationFinishLis
     private Button mLoginButton;
     private TextView mInfoTextView;
     private boolean mAuthenticated;
+    private HttpsReqsManager mHttpsReqsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +45,15 @@ public class LoginActivity extends Activity implements OnAuthenticationFinishLis
         Log.d(LOG_TAG, "onCreate");
         Log.d(LOG_TAG, "savedInstanceState: " + savedInstanceState);
 
-        if(!alreadyLogged()){
-            initViewsRefs();
-            initButtonListener();
-        } else {
-            launchMainActivity();
-        }
-
+        mHttpsReqsManager = new HttpsReqsManager();
+        initViewsRefs();
+        initButtonListener();
     }
 
-    private boolean alreadyLogged() {
-        return false;
+    @Override
+    protected void onStop(){
+        mHttpsReqsManager.cancelAll();
+        super.onStop();
     }
 
     private void initViewsRefs() {
@@ -68,33 +74,34 @@ public class LoginActivity extends Activity implements OnAuthenticationFinishLis
     }
 
     private void initAuthentication() {
+        Log.d(LOG_TAG, "initAuthentication()");
         mLoginButton.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
-        UserInfo userInfo = new UserInfo(mEmail.getText().toString(), mPassword.getText().toString());
-        AuthenticationTask authenticationTask = new AuthenticationTask(this);
-        authenticationTask.execute(userInfo);
+        String email = mEmail.getText().toString();
+        String password = mPassword.getText().toString();
+        OutAuthMsg outAuthMsg = new OutAuthMsg(email, password);
+        mHttpsReqsManager.makeGet(this, outAuthMsg, new InAuthMsg());
     }
 
-    @Override
-    public void onAuthenticationFinish(AuthStatus result) {
-        switch(result){
-            case NO_CONNECTION:
-                hideProgressAndShowLoginButton();
-                setLoginInfoText(R.string.no_connection);
-                break;
-            case SUCCESS:
-                launchMainActivity();
-                break;
-            case EMAIL_NOT_REGISTERED:
-                hideProgressAndShowLoginButton();
-                setLoginInfoText(R.string.email_not_registered);
-                break;
-            case INCORRECT_PASSWORD:
-                hideProgressAndShowLoginButton();
-                setLoginInfoText(R.string.incorrect_password);
-                break;
-            default:
-                break;
+    public void OnFinishHttpGetReq(InAuthMsg inAuthMsg) {
+        Log.d(LOG_TAG, "OnFinishHttpGetReq called");
+
+        if(inAuthMsg == null) {
+            hideProgressAndShowLoginButton();
+            setLoginInfoText(R.string.no_connection);
+        } else if(inAuthMsg.getAuthOk()) {
+            launchMainActivity();
+        } else{
+            switch (inAuthMsg.getNoAuthReason()){
+                case EMAIL:
+                    hideProgressAndShowLoginButton();
+                    setLoginInfoText(R.string.email_not_registered);
+                    break;
+                case PASSWORD:
+                    hideProgressAndShowLoginButton();
+                    setLoginInfoText(R.string.incorrect_password);
+                    break;
+            }
         }
     }
 
