@@ -39,8 +39,15 @@ public class HttpsReqsManager {
         req.execute(param);
     }
 
-    public void makePost(InMsg inMsg){
-
+    public void makePost(OnFinishHttpsPostReqListener onFinishHttpsPostReqListener, OutMsg outMsg){
+        Log.d(LOG_TAG, "makePost()");
+        HttpsPostReq req = new HttpsPostReq();
+        mPostsById.put(outMsg.getId(), req);
+        HttpsPostReqParam param = new HttpsPostReqParam();
+        param.httpsReqsManager = this;
+        param.finishHttpsPostReqListener = onFinishHttpsPostReqListener;
+        param.outMsg = outMsg;
+        req.execute(param);
     }
 
     public void cancelAll(){

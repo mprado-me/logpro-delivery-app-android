@@ -27,4 +27,8 @@ public class Consts {
         }
     }
 
+    public static class Chat {
+        public static final String NEW_CHAT_MSG_PATH = "mobile/post-chat-msg";
+    }
+
 }

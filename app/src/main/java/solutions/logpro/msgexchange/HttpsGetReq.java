@@ -58,6 +58,7 @@ public class HttpsGetReq<T extends InMsg> extends AsyncTask<HttpsGetReqParam<T>,
             Log.d(LOG_TAG, "buffer.toString() = " + buffer.toString());
 
             mHttpsGetReqParam.inMsg.initParams(buffer.toString());
+            urlConnection.disconnect();
         } catch (MalformedURLException e) {
             Log.d(LOG_TAG, "MalformedURLException");
             mHttpsGetReqParam.inMsg = null;

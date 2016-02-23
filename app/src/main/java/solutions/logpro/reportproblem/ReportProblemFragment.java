@@ -16,6 +16,7 @@ public class ReportProblemFragment extends SecondaryWindowFragment {
 
     private final String MESSAGE_SPEC = "MESSAGE_SPEC";
     private final String PHONE_SPEC = "PHONE_SPEC";
+    private final String CHAT_SPEC = "CHAT";
     private final String LOG_TAG = this.getClass().getName()+ Consts.GENERAL_LOG_TAG;
 
     public ReportProblemFragment() {
@@ -42,6 +43,9 @@ public class ReportProblemFragment extends SecondaryWindowFragment {
         mTabHost.addTab(
                 mTabHost.newTabSpec(PHONE_SPEC).setIndicator(getResources().getString(R.string.report_problem_phone_tab_title)),
                 ReportProblemByPhoneFragment.class, null);
+        mTabHost.addTab(
+                mTabHost.newTabSpec(CHAT_SPEC).setIndicator("Chat"),
+                ChatFragment.class, null);
 
         return rootView;
     }
