@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = this.getClass().getName() + Consts.GENERAL_LOG_TAG;
 
     NavigationManager mNavigationManager;
-    private MsgFetcher mMsgFetcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
         SecondaryWindowFragment.setMainActivity(this);
         mNavigationManager = new NavigationManager(this);
         InitNavigationDrawerMenu();
-        mMsgFetcher = new MsgFetcher(this, new MsgFromServerHandler());
-}
+    }
 
 
     @Override

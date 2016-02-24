@@ -25,7 +25,7 @@ public class InAuthMsg extends InMsg {
         try {
             authOk = jsonObject.getBoolean(Consts.Auth.AUTH_OK_PARAM);
             if(!authOk){
-                noAuthReason = Consts.Auth.getNoAuthReason(jsonObject.getString(Consts.Auth.NO_AUTH_REASON_PARAM));
+                noAuthReason = Consts.Auth.noAuthReason(jsonObject.getString(Consts.Auth.NO_AUTH_REASON_PARAM));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -35,11 +35,11 @@ public class InAuthMsg extends InMsg {
         Log.d(LOG_TAG, "noAuthReason = " + noAuthReason);
     }
 
-    public boolean getAuthOk() {
+    public boolean authOk() {
         return authOk;
     }
 
-    public NoAuthReason getNoAuthReason() {
+    public NoAuthReason noAuthReason() {
         return noAuthReason;
     }
 }

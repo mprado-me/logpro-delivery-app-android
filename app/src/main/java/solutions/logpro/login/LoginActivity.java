@@ -2,8 +2,8 @@ package solutions.logpro.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import solutions.logpro.MainActivity;
 import solutions.logpro.R;
-import solutions.logpro.msg.InMsg;
 import solutions.logpro.msg.auth.InAuthMsg;
 import solutions.logpro.msg.auth.OutAuthMsg;
 import solutions.logpro.msgexchange.HttpsReqsManager;
@@ -34,7 +33,6 @@ public class LoginActivity extends Activity implements OnFinishHttpGetReqListene
     private ProgressBar mProgressBar;
     private Button mLoginButton;
     private TextView mInfoTextView;
-    private boolean mAuthenticated;
     private HttpsReqsManager mHttpsReqsManager;
 
     @Override
@@ -48,6 +46,11 @@ public class LoginActivity extends Activity implements OnFinishHttpGetReqListene
         mHttpsReqsManager = new HttpsReqsManager();
         initViewsRefs();
         initButtonListener();
+        initEmail();
+    }
+
+    private void initEmail() {
+        mEmail.setText(LoginInfo.email(this));
     }
 
     @Override
@@ -89,10 +92,11 @@ public class LoginActivity extends Activity implements OnFinishHttpGetReqListene
         if(inAuthMsg == null) {
             hideProgressAndShowLoginButton();
             setLoginInfoText(R.string.no_connection);
-        } else if(inAuthMsg.getAuthOk()) {
+        } else if(inAuthMsg.authOk()) {
+            LoginInfo.save(this, mEmail.getText().toString(), mPassword.getText().toString());
             launchMainActivity();
         } else{
-            switch (inAuthMsg.getNoAuthReason()){
+            switch (inAuthMsg.noAuthReason()){
                 case EMAIL:
                     hideProgressAndShowLoginButton();
                     setLoginInfoText(R.string.email_not_registered);
@@ -112,7 +116,6 @@ public class LoginActivity extends Activity implements OnFinishHttpGetReqListene
 
     private void launchMainActivity(){
         // TODO: mAuthenticated será true quando o usuário for autenticado e não quando a MainActivity ser lançada
-        mAuthenticated = true;
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
         startActivity(intent);

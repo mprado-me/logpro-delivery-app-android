@@ -22,12 +22,12 @@ import solutions.logpro.utils.Consts;
  * Created by MarcoAurelio on 24/02/2016.
  */
 public class MsgFetcherThread extends Thread {
-    private static final String LOG_TAG = MsgFetcherThread.class.getName()+Consts.GENERAL_LOG_TAG;
+    private static final String LOG_TAG = MsgFetcherThread.class.getName() + Consts.GENERAL_LOG_TAG;
 
-    Activity mActivity;
-    MsgFromServerHandler mMsgFromServerHandler;
+    private Activity mActivity;
+    private MsgFromServerHandler mMsgFromServerHandler;
 
-    public MsgFetcherThread(Activity activity, MsgFromServerHandler msgFromServerHandler){
+    public MsgFetcherThread(Activity activity, MsgFromServerHandler msgFromServerHandler) {
         mActivity = activity;
         mMsgFromServerHandler = msgFromServerHandler;
     }
@@ -37,7 +37,7 @@ public class MsgFetcherThread extends Thread {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
 
-        while(true){
+        while (!interrupted()) {
             try {
                 Uri uri = new Uri.Builder()
                         .scheme(Consts.MSG_SCHEME)
@@ -65,18 +65,29 @@ public class MsgFetcherThread extends Thread {
                 line = reader.readLine();
                 buffer.append(line);
                 while ((line = reader.readLine()) != null) {
-                    buffer.append("\n"+line);
+                    buffer.append("\n" + line);
                 }
 
                 Log.d(LOG_TAG, "buffer.toString() = " + buffer.toString());
 
                 urlConnection.disconnect();
 
-                try {
-                    mMsgFromServerHandler.onInMsgsArrives(new JSONArray(buffer.toString()));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                final String jsonText = buffer.toString();
+
+                mActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (interrupted()){
+                                Log.d(LOG_TAG, "MsgFetcherThread.interrupted() = " + true);
+                                return;
+                            }
+                            mMsgFromServerHandler.onInMsgsArrives(new JSONArray(jsonText));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (ProtocolException e) {
