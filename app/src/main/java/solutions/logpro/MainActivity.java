@@ -20,6 +20,8 @@ import android.widget.EditText;
 
 import java.util.HashMap;
 
+import solutions.logpro.msgexchange.MsgFetcher;
+import solutions.logpro.msgexchange.MsgFromServerHandler;
 import solutions.logpro.reportproblem.ReportProblemFragment;
 import solutions.logpro.utils.Consts;
 import solutions.logpro.utils.Utils;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = this.getClass().getName() + Consts.GENERAL_LOG_TAG;
 
     NavigationManager mNavigationManager;
+    private MsgFetcher mMsgFetcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         SecondaryWindowFragment.setMainActivity(this);
         mNavigationManager = new NavigationManager(this);
         InitNavigationDrawerMenu();
+        mMsgFetcher = new MsgFetcher(this, new MsgFromServerHandler());
 }
 
 
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "onPause");
     }
 
-    @    Override
+    @Override
     protected void onStop() {
         super.onStop();
         Log.d(LOG_TAG, "onStop");

@@ -31,4 +31,8 @@ public class Consts {
         public static final String NEW_CHAT_MSG_PATH = "mobile/post-chat-msg";
     }
 
+    public static class MsgFetcher {
+        public static final String MSG_FETCH_PATH = "mobile/fetch-msg";
+    }
+
 }
