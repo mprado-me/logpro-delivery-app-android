@@ -4,7 +4,7 @@ The app will be used by the motorcycle courier. It is through the app that the m
 
 ![alt tag](http://i.imgur.com/ODkjYx4.png?1)
 
-![alt tag](http://i.imgur.com/RsEWJH7.png?1)
+![alt tag](http://i.imgur.com/7E549S1.png?1)
 
 ![alt tag](http://i.imgur.com/8ZuhCA3.png?1)
 
